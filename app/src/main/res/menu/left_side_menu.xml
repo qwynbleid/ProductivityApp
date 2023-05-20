@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item android:title="Search by time">
+        <menu>
+            <item android:title="Day"
+                android:id="@+id/dayBt"/>
+
+            <item android:title="Week"
+                android:id="@+id/weekBt"/>
+
+            <item android:title="Month"
+                android:id="@+id/monthBt"/>
+
+            <item android:title="Year"
+                android:id="@+id/yearBt"/>
+
+        </menu>
+    </item>
+    <item android:title="Other">
+        <menu>
+            <item android:title="Settings"
+                android:id="@+id/settingsBt"/>
+        </menu>
+    </item>
+</menu>
