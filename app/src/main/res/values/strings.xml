@@ -2,4 +2,9 @@
     <string name="app_name">MyApp</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="don_t_have_one">Don\'t have one?</string>
+    <string name="let_s_create">Let`s create!</string>
+    <string name="welcome_to_notes">Welcome to Notes!</string>
+    <string name="log_in_to_an_existing_account">Log in to an existing account!</string>
+    <string name="let_s_create_an_account">Let`s create an account!</string>
 </resources>

@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Welcome to Notes!"
+            android:text="@string/welcome_to_notes"
             android:textColor="@color/text_color"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,17 +33,16 @@
             app:layout_constraintGuide_percent="0.35" />
 
 
-
         <EditText
             android:id="@+id/userEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:ems="10"
-            android:inputType="textEmailAddress"
             android:hint="Email"
-            app:layout_constraintEnd_toEndOf="@+id/textView2"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toStartOf="@+id/guideline5"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <EditText
@@ -53,7 +52,7 @@
             android:layout_marginTop="16dp"
             android:ems="10"
             android:inputType="textPassword"
-            android:hint="Password"
+            android:hint="New password"
             app:layout_constraintEnd_toEndOf="@+id/userEmail"
             app:layout_constraintStart_toStartOf="@+id/userEmail"
             app:layout_constraintTop_toBottomOf="@+id/userEmail" />
@@ -73,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Let`s create an account!"
+            android:text="@string/let_s_create_an_account"
             android:textColor="@color/text_color"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -100,6 +99,20 @@
             app:layout_constraintEnd_toEndOf="@+id/submitBt"
             app:layout_constraintStart_toStartOf="@+id/submitBt"
             app:layout_constraintTop_toBottomOf="@+id/submitBt" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.8" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
