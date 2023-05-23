@@ -1,5 +1,6 @@
 package com.example.myapp.ui.main
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -64,24 +65,37 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
             deleteBt.setOnClickListener {
 
-                docRef = firestore.collection("Notes").document(user.uid).collection("UserNotes").document(note.noteId)
+                val alertDialog = AlertDialog.Builder(requireContext())
+                    .setMessage("Ви впевнені, що хочете видалити нотатку?")
+                    .setPositiveButton("Так") { _, _ ->
+                        noteProgressBar.visibility = View.VISIBLE
 
-                docRef.delete().addOnSuccessListener {
+                        //noteText.setTextColor(R.id)
 
-                    Toast.makeText(requireContext(), "Note ${note.title} deleted", Toast.LENGTH_SHORT).show()
+                        docRef = firestore.collection("Notes").document(user.uid).collection("UserNotes").document(note.noteId)
 
-                    requireActivity().supportFragmentManager
-                        .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                        docRef.delete().addOnSuccessListener {
+
+                            Toast.makeText(requireContext(), "Note ${note.title} deleted", Toast.LENGTH_SHORT).show()
+
+                            requireActivity().supportFragmentManager
+                                .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
 
-                }.addOnFailureListener {
+                        }.addOnFailureListener {
 
-                    Toast.makeText(requireContext(), "Can not delete the note", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), "Can not delete the note", Toast.LENGTH_SHORT).show()
 
-                    requireActivity().supportFragmentManager
-                        .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                            requireActivity().supportFragmentManager
+                                .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
-                }
+                        }
+                    }
+
+                    .setNegativeButton("Ні", null)
+                    .create()
+                alertDialog.show()
+
 
             }
 
@@ -97,8 +111,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                         Toast.makeText(requireContext(),"All fields should be filled", Toast.LENGTH_SHORT).show()
                     } else {
 
-                        var activityBar = requireActivity() as MainActivity
-                        activityBar.showProgressBar(true)
+                        noteProgressBar.visibility = View.VISIBLE
 
                         docRef = firestore.collection("Notes").document(user.uid).collection("UserNotes").document(note.noteId)
 
@@ -138,8 +151,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
                         }
 
-                         activityBar = requireActivity() as MainActivity
-                        activityBar.showProgressBar(false)
+
 
                     }
 
@@ -154,8 +166,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                         Toast.makeText(requireContext(),"All fields should be filled", Toast.LENGTH_SHORT).show()
                     } else {
 
-                        val activityBar = requireActivity() as MainActivity
-                        activityBar.showProgressBar(true)
+                        noteProgressBar.visibility = View.VISIBLE
 
                         docRef = firestore.collection("Notes").document(user.uid).collection("UserNotes").document()
                         val noteMap = hashMapOf<String, Any>()
@@ -189,7 +200,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
 
                         }
-                        activityBar.showProgressBar(false)
+
                     }
                 }
             }

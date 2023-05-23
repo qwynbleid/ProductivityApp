@@ -15,4 +15,5 @@
     <color name="text_color">#000000</color>
     <color name="background_color">#FFFFFF</color>
     <color name="border_color">#000000</color>
+    <color name="color_grey">#878282</color>
 </resources>

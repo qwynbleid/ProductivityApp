@@ -61,14 +61,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showProgressBar(showBar: Boolean){
-        if (showBar) {
-            binding.mainProgressBar.visibility = View.VISIBLE
-        } else {
-            binding.mainProgressBar.visibility = View.INVISIBLE
-        }
 
-    }
 
     private fun showExploreFragment() {
         val exploreFragment = ExploreFragment()
