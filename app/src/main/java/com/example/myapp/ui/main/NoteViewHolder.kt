@@ -3,7 +3,6 @@ package com.example.myapp.ui.main
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapp.databinding.NoteItemBinding
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
 class NoteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = NoteItemBinding.bind(view)
@@ -12,5 +11,6 @@ class NoteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         title.text = note.title
         text.text = note.text
         creationDate.text = note.creationDate
+        completeDate.text= note.completeDate
     }
 }

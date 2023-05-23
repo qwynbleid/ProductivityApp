@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentManager
 import com.example.myapp.MainActivity
 import com.example.myapp.R
 import com.example.myapp.databinding.FragmentAddNoteBinding
-import com.google.firebase.Timestamp
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
@@ -18,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("","","")) : Fragment(R.layout.fragment_add_note) {
+class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("","","","")) : Fragment(R.layout.fragment_add_note) {
 
     private lateinit var binding : FragmentAddNoteBinding
     private lateinit var auth: FirebaseAuth
@@ -35,6 +35,19 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
         user = FirebaseAuth.getInstance().currentUser!!
         firestore = FirebaseFirestore.getInstance()
 
+        //picker для дати виконання завдання
+        val datePicker = MaterialDatePicker.Builder.datePicker()
+            .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
+            .build()
+
+        datePicker.addOnPositiveButtonClickListener {
+            val format = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).apply {
+                timeZone = TimeZone.getTimeZone("UTC")
+            }
+            binding.completeDate.text = format.format(it)
+            binding.completeDate.visibility = View.VISIBLE
+        }
+
         val activity = requireActivity() as MainActivity
         activity.showMenu(false)
 
@@ -43,6 +56,8 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
             if (editMode) {
                 noteTitle.setText(note.title)
                 noteText.setText(note.text)
+                completeDate.text = note.completeDate
+                completeDate.visibility = View.VISIBLE
                 deleteBt.visibility = View.VISIBLE
                 topTextView.text = "Edit note"
             }
@@ -77,7 +92,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                     val title = noteTitle.text.toString()
                     val text = noteText.text.toString()
 
-                    if (title.isEmpty() || text.isEmpty()) {
+                    if (title.isEmpty() || text.isEmpty() || completeDate.text == "noDate") {
                         Toast.makeText(requireContext(),"All fields should be filled", Toast.LENGTH_SHORT).show()
                     } else {
 
@@ -91,13 +106,14 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                         val currentDate = Calendar.getInstance().time
 
                         // Встановіть формат дати
-                        //val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-                        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+                        val dateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault())
+                        //val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
                         // Отримайте рядок зі зформатованою датою
                         val formattedDate = dateFormat.format(currentDate)
 
                         // Встановіть отриманий рядок у TextView
                         noteMap["creationDate"] =  formattedDate
+                        noteMap["completeDate"] = completeDate.text
 
                         docRef.set(noteMap).addOnCompleteListener {
                             Toast.makeText(requireContext(),"Note is updated", Toast.LENGTH_SHORT).show()
@@ -118,13 +134,14 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
                     }
 
-
                 } else {
 
                     val title = noteTitle.text.toString()
                     val text = noteText.text.toString()
 
-                    if (title.isEmpty() || text.isEmpty()) {
+
+
+                    if (title.isEmpty() || text.isEmpty() || completeDate.text == "noDate") {
                         Toast.makeText(requireContext(),"All fields should be filled", Toast.LENGTH_SHORT).show()
                     } else {
 
@@ -136,16 +153,15 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                         val currentDate = Calendar.getInstance().time
 
                         // Встановіть формат дати
-                        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-
+                        //val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+                        val dateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault())
                         // Отримайте рядок зі зформатованою датою
                         val formattedDate = dateFormat.format(currentDate)
 
                         // Встановіть отриманий рядок у TextView
                         noteMap["creationDate"] =  formattedDate
+                        noteMap["completeDate"] = completeDate.text
 
-
-                        noteMap["creationDate"] =
                         docRef.set(noteMap).addOnCompleteListener {
                             Toast.makeText(requireContext(),"Note created successfully", Toast.LENGTH_SHORT).show()
 
@@ -163,6 +179,16 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                     }
                 }
             }
+
+            pickDateBt.setOnClickListener {
+
+
+                datePicker.show(requireActivity().supportFragmentManager, "picker")
+
+
+
+            }
+
 
             returnBt.setOnClickListener {
                 requireActivity().supportFragmentManager

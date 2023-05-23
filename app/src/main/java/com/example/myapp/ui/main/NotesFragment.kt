@@ -61,7 +61,18 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
 
 //            filterMenu.setNavigationItemSelectedListener {
 //                when (it.itemId) {
-//                    // TODO:
+//                    R.id.priority -> {
+//
+//                    }
+//                    R.id.difficulty -> {
+//
+//                    }
+//                    R.id.creation_date -> {
+//
+//                    }
+//                    R.id.execution_date -> {
+//
+//                    }
 //                }
 //                drawerLayout.closeDrawer(filterMenu)
 //                true
@@ -94,7 +105,6 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
                     R.id.settingsBt -> {
 
                         val fragmentSettings = SettingsFragment()
-
                         requireActivity().supportFragmentManager.beginTransaction()
                             .replace(R.id.fragmentContainer, fragmentSettings)
                             .addToBackStack("NotesFragment")
@@ -137,7 +147,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
 
                     holder.itemView.setOnClickListener {
 
-                        val note = Note(model.title, model.text, model.creationDate, noteId)
+                        val note = Note(model.title, model.text, model.creationDate, model.completeDate, noteId)
 
                         val addNoteFragment = AddNoteFragment(true, note)
 
@@ -152,7 +162,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
 
             }
 
-        binding.recyclerView.layoutManager = GridLayoutManager(context, 2)
+        binding.recyclerView.layoutManager = GridLayoutManager(context, 1)
         binding.recyclerView.adapter = noteAdapter
     }
 

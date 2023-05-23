@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.example.myapp.MainActivity
 import com.example.myapp.R
 import com.example.myapp.databinding.FragmentSettingsBinding
 import com.example.myapp.ui.login.SignInFragment
@@ -18,6 +19,9 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val activity = requireActivity() as MainActivity
+        activity.showMenu(false)
 
         binding = FragmentSettingsBinding.bind(view)
         auth = FirebaseAuth.getInstance()

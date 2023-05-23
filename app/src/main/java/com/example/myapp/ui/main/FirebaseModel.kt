@@ -5,10 +5,12 @@ class FirebaseModel() {
     var title: String = ""
     var text: String = ""
     var creationDate: String = ""
+    var completeDate: String = ""
 
-    constructor(title: String, text: String, creationDate: String) : this() {
+    constructor(title: String, text: String, creationDate: String, completeDate: String) : this() {
         this.title = title
         this.text = text
         this.creationDate = creationDate
+        this.completeDate = completeDate
     }
 }
