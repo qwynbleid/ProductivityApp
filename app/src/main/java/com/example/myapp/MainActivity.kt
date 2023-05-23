@@ -8,6 +8,7 @@ import com.example.myapp.databinding.ActivityMainBinding
 import com.example.myapp.ui.main.NotesFragment
 import com.example.myapp.ui.login.SignInFragment
 import com.example.myapp.ui.main.ExploreFragment
+import com.example.myapp.ui.main.SplashFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -39,11 +41,16 @@ class MainActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        if (auth.currentUser == null) {
-            showLoginFragment()
-        } else {
-            showNotesFragment()
-        }
+        val splashFragment = SplashFragment()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, splashFragment)
+            .commit()
+
+//        if (auth.currentUser == null) {
+//            showLoginFragment()
+//        } else {
+//            showNotesFragment()
+//        }
     }
 
     fun showMenu(showMenu: Boolean) {
@@ -52,6 +59,15 @@ class MainActivity : AppCompatActivity() {
         } else {
             binding.bottomMenu.visibility = View.GONE
         }
+    }
+
+    fun showProgressBar(showBar: Boolean){
+        if (showBar) {
+            binding.mainProgressBar.visibility = View.VISIBLE
+        } else {
+            binding.mainProgressBar.visibility = View.INVISIBLE
+        }
+
     }
 
     private fun showExploreFragment() {
@@ -89,5 +105,4 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
-
 }

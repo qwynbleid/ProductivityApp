@@ -87,6 +87,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
             saveBt.setOnClickListener {
 
+
                 if (editMode) {
 
                     val title = noteTitle.text.toString()
@@ -95,6 +96,9 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                     if (title.isEmpty() || text.isEmpty() || completeDate.text == "noDate") {
                         Toast.makeText(requireContext(),"All fields should be filled", Toast.LENGTH_SHORT).show()
                     } else {
+
+                        var activityBar = requireActivity() as MainActivity
+                        activityBar.showProgressBar(true)
 
                         docRef = firestore.collection("Notes").document(user.uid).collection("UserNotes").document(note.noteId)
 
@@ -125,12 +129,17 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                         }.addOnFailureListener {
                             Toast.makeText(requireContext(),"Failed to update note", Toast.LENGTH_SHORT).show()
 
+
+
                             requireActivity().supportFragmentManager
                                 .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
+
+
                         }
 
-
+                         activityBar = requireActivity() as MainActivity
+                        activityBar.showProgressBar(false)
 
                     }
 
@@ -144,6 +153,9 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                     if (title.isEmpty() || text.isEmpty() || completeDate.text == "noDate") {
                         Toast.makeText(requireContext(),"All fields should be filled", Toast.LENGTH_SHORT).show()
                     } else {
+
+                        val activityBar = requireActivity() as MainActivity
+                        activityBar.showProgressBar(true)
 
                         docRef = firestore.collection("Notes").document(user.uid).collection("UserNotes").document()
                         val noteMap = hashMapOf<String, Any>()
@@ -175,7 +187,9 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                             requireActivity().supportFragmentManager
                                 .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
+
                         }
+                        activityBar.showProgressBar(false)
                     }
                 }
             }

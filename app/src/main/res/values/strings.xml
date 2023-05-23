@@ -7,4 +7,6 @@
     <string name="welcome_to_notes">Welcome to Notes!</string>
     <string name="log_in_to_an_existing_account">Log in to an existing account!</string>
     <string name="let_s_create_an_account">Let`s create an account!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
