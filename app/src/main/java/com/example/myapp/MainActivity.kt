@@ -8,7 +8,6 @@ import com.example.myapp.databinding.ActivityMainBinding
 import com.example.myapp.ui.main.NotesFragment
 import com.example.myapp.ui.login.SignInFragment
 import com.example.myapp.ui.main.ExploreFragment
-import com.example.myapp.ui.main.SplashFragment
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -41,16 +40,16 @@ class MainActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        val splashFragment = SplashFragment()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentContainer, splashFragment)
-            .commit()
+//        val splashFragment = SplashFragment()
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.fragmentContainer, splashFragment)
+//            .commit()
 
-//        if (auth.currentUser == null) {
-//            showLoginFragment()
-//        } else {
-//            showNotesFragment()
-//        }
+        if (auth.currentUser == null) {
+            showLoginFragment()
+        } else {
+            showNotesFragment()
+        }
     }
 
     fun showMenu(showMenu: Boolean) {

@@ -207,19 +207,14 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
             pickDateBt.setOnClickListener {
 
-
                 datePicker.show(requireActivity().supportFragmentManager, "picker")
 
-
-
             }
-
 
             returnBt.setOnClickListener {
                 requireActivity().supportFragmentManager
                     .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
             }
-
 
         }
     }
