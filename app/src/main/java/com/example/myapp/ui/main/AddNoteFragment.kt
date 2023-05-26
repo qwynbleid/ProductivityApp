@@ -175,7 +175,6 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                         }
 
 
-
                     }
 
                 } else {
