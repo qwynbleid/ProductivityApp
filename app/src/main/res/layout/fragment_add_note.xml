@@ -95,8 +95,8 @@
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:scaleType="fitCenter"
         android:padding="0dp"
+        android:scaleType="fitCenter"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -109,9 +109,9 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
+        android:padding="0dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_delete"
-        android:padding="0dp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -123,9 +123,9 @@
         android:id="@+id/pickDateBt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Choose date"
         android:textAllCaps="false"
-        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -148,8 +148,8 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="64dp"
         android:text="noDate"
-        android:visibility="invisible"
         android:textColor="@color/text_color"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
@@ -159,11 +159,50 @@
         android:layout_height="60dp"
         android:layout_margin="16dp"
         android:indeterminateTint="@color/black"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="invisible"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/priorityGroup"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/saveBt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pickDateBt"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/lowPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Low"
+            android:button="@drawable/star"
+            android:gravity="center"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/mediumPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Medium"
+            android:button="@drawable/star"
+            android:gravity="center"/>
+
+        <RadioButton
+            android:id="@+id/highPriority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="High"
+            android:button="@drawable/star"
+            android:gravity="center"/>
+    </RadioGroup>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

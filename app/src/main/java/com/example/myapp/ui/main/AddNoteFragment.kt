@@ -19,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("","","","")) : Fragment(R.layout.fragment_add_note) {
+class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("","","","",0,"")) : Fragment(R.layout.fragment_add_note) {
 
     private lateinit var binding : FragmentAddNoteBinding
     private lateinit var auth: FirebaseAuth
@@ -49,6 +49,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
             binding.completeDate.visibility = View.VISIBLE
         }
 
+
         val activity = requireActivity() as MainActivity
         activity.showMenu(false)
 
@@ -61,6 +62,14 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                 completeDate.visibility = View.VISIBLE
                 deleteBt.visibility = View.VISIBLE
                 topTextView.text = "Edit note"
+
+                when(note.priority) {
+                    1 -> {priorityGroup.check(lowPriority.id)}
+                    2 -> {priorityGroup.check(mediumPriority.id)}
+                    3 -> {priorityGroup.check(highPriority.id)}
+                }
+
+
             }
 
             deleteBt.setOnClickListener {
@@ -99,6 +108,16 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
             }
 
+            var priority: Int = 0
+            priorityGroup.setOnCheckedChangeListener { _, checkedId ->
+                priority = when (checkedId) {
+                    R.id.lowPriority -> 3
+                    R.id.mediumPriority -> 2
+                    R.id.highPriority -> 1
+                    else -> 3
+                }
+            }
+
             saveBt.setOnClickListener {
 
 
@@ -106,6 +125,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
                     val title = noteTitle.text.toString()
                     val text = noteText.text.toString()
+
 
                     if (title.isEmpty() || text.isEmpty() || completeDate.text == "noDate") {
                         Toast.makeText(requireContext(),"All fields should be filled", Toast.LENGTH_SHORT).show()
@@ -120,6 +140,8 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                         noteMap["title"] = title
                         noteMap["text"] = text
 
+
+
                         val currentDate = Calendar.getInstance().time
 
                         // Встановіть формат дати
@@ -131,6 +153,9 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                         // Встановіть отриманий рядок у TextView
                         noteMap["creationDate"] =  formattedDate
                         noteMap["completeDate"] = completeDate.text
+
+
+                        noteMap["priority"] = priority
 
                         docRef.set(noteMap).addOnCompleteListener {
                             Toast.makeText(requireContext(),"Note is updated", Toast.LENGTH_SHORT).show()
@@ -168,6 +193,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
                         noteProgressBar.visibility = View.VISIBLE
 
+
                         docRef = firestore.collection("Notes").document(user.uid).collection("UserNotes").document()
                         val noteMap = hashMapOf<String, Any>()
                         noteMap["title"] = title
@@ -184,6 +210,9 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                         // Встановіть отриманий рядок у TextView
                         noteMap["creationDate"] =  formattedDate
                         noteMap["completeDate"] = completeDate.text
+
+
+                        noteMap["priority"] = priority
 
                         docRef.set(noteMap).addOnCompleteListener {
                             Toast.makeText(requireContext(),"Note created successfully", Toast.LENGTH_SHORT).show()
@@ -219,6 +248,8 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
         }
     }
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -227,3 +258,4 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 }
+

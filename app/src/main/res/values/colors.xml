@@ -13,9 +13,13 @@
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
     <color name="text_color">#000000</color>
-    <color name="background_color">#F5F5F5</color>
+    <color name="background_color">#FFFFFF</color>
     <color name="border_color">#000000</color>
     <color name="color_grey">#878282</color>
+    <color name="green">#00C980</color>
+    <color name="red">#FF4646</color>
+    <color name="yellow">#FFC114</color>
+
     <color name="button_tint">#426164</color>
     <color name="note_background">#D0CDD6</color>
     <color name="button_background">#0B3948</color>
