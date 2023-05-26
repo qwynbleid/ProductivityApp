@@ -1,7 +1,10 @@
 <resources>
 
-    <style name="Widget.Theme.MyApp.ButtonBar.Fullscreen" parent="">
-        <item name="android:background">@color/black_overlay</item>
-        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
+<!--    <style name="Widget.Theme.MyApp.ButtonBar.Fullscreen" parent="">-->
+<!--        <item name="android:background">@color/black_overlay</item>-->
+<!--        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>-->
+<!--    </style>-->
+    <style name="ButtonTheme.SoftGrey" parent="Theme.AppCompat">
+        <item name="android:backgroundTint">#0B3948</item>
     </style>
 </resources>
