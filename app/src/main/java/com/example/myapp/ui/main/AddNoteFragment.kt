@@ -240,7 +240,6 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
             }
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
