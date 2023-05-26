@@ -179,7 +179,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
         noteAdapter.stopListening() // Зупинити прослуховування змін даних перед оновленням
         // Оновити запит до Firestore з новим сортуванням
         val query = firestore.collection("Notes").document(user.uid).collection("UserNotes")
-            .orderBy(currentSortOption, Query.Direction.DESCENDING)
+            .orderBy(currentSortOption, Query.Direction.ASCENDING)
 
         val userNotes = FirestoreRecyclerOptions.Builder<FirebaseModel>()
             .setQuery(query, FirebaseModel::class.java).build()

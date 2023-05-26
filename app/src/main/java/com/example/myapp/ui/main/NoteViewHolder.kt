@@ -19,10 +19,8 @@ class NoteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             1 -> R.color.red
             2 -> R.color.yellow
             3 -> R.color.green
-
             else -> {R.color.green}
         }
         ivViewPriorityIndicator.setColorFilter(ContextCompat.getColor(itemView.context, priorityColor))
-
     }
 }
