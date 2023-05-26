@@ -184,7 +184,6 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                     val text = noteText.text.toString()
 
 
-
                     if (title.isEmpty() || text.isEmpty() || completeDate.text == "noDate") {
                         Toast.makeText(requireContext(),"All fields should be filled", Toast.LENGTH_SHORT).show()
                     } else {
