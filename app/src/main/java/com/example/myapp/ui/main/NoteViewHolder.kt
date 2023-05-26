@@ -15,7 +15,6 @@ class NoteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         creationDate.text = note.creationDate
         completeDate.text = note.completeDate
 
-
         val priorityColor = when (note.priority) {
             1 -> R.color.red
             2 -> R.color.yellow
@@ -24,7 +23,6 @@ class NoteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             else -> {R.color.green}
         }
         ivViewPriorityIndicator.setColorFilter(ContextCompat.getColor(itemView.context, priorityColor))
-       // ivViewPriorityIndicator.setColorFilter(ContextCompat.getColor(itemView.context, priorityColor))
 
     }
 }

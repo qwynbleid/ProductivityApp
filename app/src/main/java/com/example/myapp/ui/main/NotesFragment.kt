@@ -1,5 +1,6 @@
 package com.example.myapp.ui.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
     private lateinit var user: FirebaseUser
     private lateinit var firestore: FirebaseFirestore
     private lateinit var noteAdapter: FirestoreRecyclerAdapter<FirebaseModel, NoteViewHolder>
+    private var currentSortOption: String = "creationDate" // Початкова опція сортування (creationDate)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,24 +60,24 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
                 }
             }
 
-//            filterMenu.setNavigationItemSelectedListener {
-//                when (it.itemId) {
-//                    R.id.priority -> {
-//
-//                    }
+            filterMenu.setNavigationItemSelectedListener {
+                when (it.itemId) {
+                    R.id.priority -> {
+                        handleSortOptionSelected("priority") // Запустити обробник сортування за полем "priority"
+                    }
 //                    R.id.difficulty -> {
-//
+//                        handleSortOptionSelected("difficulty") // Запустити обробник сортування за полем "difficulty"
 //                    }
-//                    R.id.creation_date -> {
-//
-//                    }
-//                    R.id.execution_date -> {
-//
-//                    }
-//                }
-//                drawerLayout.closeDrawer(filterMenu)
-//                true
-//            }
+                    R.id.creationDate -> {
+                        handleSortOptionSelected("creationDate") // Запустити обробник сортування за полем "creationDate"
+                    }
+                    R.id.completeDate -> {
+                        handleSortOptionSelected("completeDate") // Запустити обробник сортування за полем "executionDate"
+                    }
+                }
+                drawerLayout.closeDrawer(filterMenu)
+                true
+            }
 
             navBt.setOnClickListener {
 
@@ -117,7 +119,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
         }
 
         val query = firestore.collection("Notes").document(user.uid).collection("UserNotes")
-            .orderBy("creationDate", Query.Direction.ASCENDING)
+            .orderBy(currentSortOption, Query.Direction.ASCENDING)
 
         val userNotes = FirestoreRecyclerOptions.Builder<FirebaseModel>()
             .setQuery(query, FirebaseModel::class.java).build()
@@ -163,8 +165,32 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
 
         binding.recyclerView.layoutManager = GridLayoutManager(context, 1)
         binding.recyclerView.adapter = noteAdapter
+        noteAdapter.startListening()
+    }
+    //////////////////////////////////////////
+    // Оголошення функції, яка викликається при натисканні кнопки сортування
+    private fun handleSortOptionSelected(sortOption: String) {
+        currentSortOption = sortOption
+        reloadRecyclerViewData() // Перезавантаження даних RecyclerView з новим сортуванням
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    private fun reloadRecyclerViewData() {
+        noteAdapter.stopListening() // Зупинити прослуховування змін даних перед оновленням
+        // Оновити запит до Firestore з новим сортуванням
+        val query = firestore.collection("Notes").document(user.uid).collection("UserNotes")
+            .orderBy(currentSortOption, Query.Direction.DESCENDING)
+
+        val userNotes = FirestoreRecyclerOptions.Builder<FirebaseModel>()
+            .setQuery(query, FirebaseModel::class.java).build()
+
+        noteAdapter.updateOptions(userNotes) // Оновити опції адаптера з новим запитом
+
+        // Викликайте цю функцію, якщо потрібно оновити дані у RecyclerView
+        binding.recyclerView.adapter?.notifyDataSetChanged()
+        noteAdapter.startListening() // Зупинити прослуховування змін даних перед оновленням
+    }
+    ////////////////////////////////////////////////
     override fun onStart() {
         super.onStart()
         noteAdapter.startListening()

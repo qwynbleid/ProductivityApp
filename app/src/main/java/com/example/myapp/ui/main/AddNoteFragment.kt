@@ -68,8 +68,6 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                     2 -> {priorityGroup.check(mediumPriority.id)}
                     3 -> {priorityGroup.check(lowPriority.id)}
                 }
-
-
             }
 
             deleteBt.setOnClickListener {
@@ -108,7 +106,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
             }
 
-            var priority: Int = 0
+            var priority: Int = 3
             priorityGroup.setOnCheckedChangeListener { _, checkedId ->
                 priority = when (checkedId) {
                     R.id.lowPriority -> 3
@@ -227,28 +225,21 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                             requireActivity().supportFragmentManager
                                 .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
-
                         }
-
                     }
                 }
             }
 
             pickDateBt.setOnClickListener {
-
                 datePicker.show(requireActivity().supportFragmentManager, "picker")
-
             }
 
             returnBt.setOnClickListener {
                 requireActivity().supportFragmentManager
                     .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
             }
-
         }
     }
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -6,10 +6,7 @@ class FirebaseModel() {
     var text: String = ""
     var creationDate: String = ""
     var completeDate: String = ""
-
-    //var priority: Priority = Priority.LOW
-
-    var priority: Int = 0
+    var priority: Int = 3
 
     constructor(
         title: String,
@@ -25,13 +22,4 @@ class FirebaseModel() {
         this.priority = priority
     }
 
-//    constructor(title: String, text: String, creationDate: String, completeDate: String,priority: String) : this() {
-//        this.title = title
-//        this.text = text
-//        this.creationDate = creationDate
-//        this.completeDate = completeDate
-//
-//        this.priority = priority
-//
-//    }
 }
