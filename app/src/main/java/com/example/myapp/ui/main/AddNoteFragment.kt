@@ -64,9 +64,9 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                 topTextView.text = "Edit note"
 
                 when(note.priority) {
-                    1 -> {priorityGroup.check(lowPriority.id)}
+                    1 -> {priorityGroup.check(highPriority.id)}
                     2 -> {priorityGroup.check(mediumPriority.id)}
-                    3 -> {priorityGroup.check(highPriority.id)}
+                    3 -> {priorityGroup.check(lowPriority.id)}
                 }
 
 

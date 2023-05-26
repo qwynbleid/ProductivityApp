@@ -14,5 +14,9 @@
     <color name="black_overlay">#66000000</color>
     <color name="text_color">#FFFFFF</color>
     <color name="background_color">#252525</color>
-    <color name="border_color">#8647F6</color>
+    <color name="border_color">#272727</color>
+    <color name="color_grey">#878282</color>
+    <color name="button_tint">#155960</color>
+    <color name="note_background">#8E8D8B</color>
+    <color name="button_background">#242C55</color>
 </resources>

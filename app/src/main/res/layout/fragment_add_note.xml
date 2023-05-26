@@ -201,7 +201,7 @@
             android:layout_weight="1"
             android:text="High"
             android:button="@drawable/star"
-            android:gravity="center"/>
+            android:gravity="center" />
     </RadioGroup>
 
 
