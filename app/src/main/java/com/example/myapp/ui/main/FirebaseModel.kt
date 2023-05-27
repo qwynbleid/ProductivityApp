@@ -1,12 +1,16 @@
 package com.example.myapp.ui.main
 
-class FirebaseModel() {
+import com.google.firebase.Timestamp
+import java.util.*
 
+class FirebaseModel {
     var title: String = ""
     var text: String = ""
-    var creationDate: String = ""
-    var completeDate: String = ""
+    var creationDate: Timestamp = Timestamp.now()
+    //var creationDate: String = ""
+    var completeDate: Timestamp = Timestamp.now()
     var priority: Int = 3
+
 
 //    constructor(
 //        title: String,

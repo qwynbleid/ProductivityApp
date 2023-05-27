@@ -11,7 +11,9 @@ import androidx.fragment.app.FragmentManager
 import com.example.myapp.MainActivity
 import com.example.myapp.R
 import com.example.myapp.databinding.FragmentAddNoteBinding
+import com.example.myapp.utils.Utility
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentReference
@@ -19,13 +21,15 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("","","","",0,"")) : Fragment(R.layout.fragment_add_note) {
+class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("","", Timestamp.now(),Timestamp.now(),3,"")) : Fragment(R.layout.fragment_add_note) {
 
     private lateinit var binding : FragmentAddNoteBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var user: FirebaseUser
     private lateinit var firestore: FirebaseFirestore
     private lateinit var docRef: DocumentReference
+
+    private var noteCompleteDate: Timestamp = note.completeDate
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,11 +45,13 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
             .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
             .build()
 
-        datePicker.addOnPositiveButtonClickListener {
+        datePicker.addOnPositiveButtonClickListener { selection ->
+            val selectedDate = Date(selection)
+            noteCompleteDate = Timestamp(selectedDate)
             val format = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).apply {
                 timeZone = TimeZone.getTimeZone("UTC")
             }
-            binding.completeDate.text = format.format(it)
+            binding.completeDate.text = format.format(selectedDate)
             binding.completeDate.visibility = View.VISIBLE
         }
 
@@ -58,7 +64,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
             if (editMode) {
                 noteTitle.setText(note.title)
                 noteText.setText(note.text)
-                completeDate.text = note.completeDate
+                completeDate.text = note.completeDate?.let { Utility.timestampToString(it) }
                 completeDate.visibility = View.VISIBLE
                 deleteBt.visibility = View.VISIBLE
                 topTextView.text = "Edit note"
@@ -106,7 +112,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
             }
 
-            var priority: Int = 3
+            var priority: Int = note.priority
             priorityGroup.setOnCheckedChangeListener { _, checkedId ->
                 priority = when (checkedId) {
                     R.id.lowPriority -> 3
@@ -137,22 +143,8 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
                         noteMap["title"] = title
                         noteMap["text"] = text
-
-
-
-                        val currentDate = Calendar.getInstance().time
-
-                        // Встановіть формат дати
-                        val dateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault())
-                        //val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-                        // Отримайте рядок зі зформатованою датою
-                        val formattedDate = dateFormat.format(currentDate)
-
-                        // Встановіть отриманий рядок у TextView
-                        noteMap["creationDate"] =  formattedDate
-                        noteMap["completeDate"] = completeDate.text
-
-
+                        noteMap["creationDate"] = Timestamp.now()
+                        noteMap["completeDate"] = noteCompleteDate
                         noteMap["priority"] = priority
 
                         docRef.set(noteMap).addOnCompleteListener {
@@ -165,12 +157,8 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                         }.addOnFailureListener {
                             Toast.makeText(requireContext(),"Failed to update note", Toast.LENGTH_SHORT).show()
 
-
-
                             requireActivity().supportFragmentManager
                                 .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
-
-
 
                         }
 
@@ -180,7 +168,6 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
                     val title = noteTitle.text.toString()
                     val text = noteText.text.toString()
-
 
                     if (title.isEmpty() || text.isEmpty() || completeDate.text == "noDate") {
                         Toast.makeText(requireContext(),"All fields should be filled", Toast.LENGTH_SHORT).show()
@@ -193,20 +180,8 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                         val noteMap = hashMapOf<String, Any>()
                         noteMap["title"] = title
                         noteMap["text"] = text
-
-                        val currentDate = Calendar.getInstance().time
-
-                        // Встановіть формат дати
-                        //val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-                        val dateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm:ss", Locale.getDefault())
-                        // Отримайте рядок зі зформатованою датою
-                        val formattedDate = dateFormat.format(currentDate)
-
-                        // Встановіть отриманий рядок у TextView
-                        noteMap["creationDate"] =  formattedDate
-                        noteMap["completeDate"] = completeDate.text
-
-
+                        noteMap["creationDate"] = Timestamp.now()
+                        noteMap["completeDate"] = noteCompleteDate
                         noteMap["priority"] = priority
 
                         docRef.set(noteMap).addOnCompleteListener {
@@ -236,13 +211,6 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                     .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
             }
         }
-    }
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
     }
 }
 

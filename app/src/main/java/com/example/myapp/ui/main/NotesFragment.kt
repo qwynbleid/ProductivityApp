@@ -68,10 +68,10 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
 //                    R.id.difficulty -> {
 //                        handleSortOptionSelected("difficulty") // Запустити обробник сортування за полем "difficulty"
 //                    }
-                    R.id.creationDate -> {
+                    R.id.creation_date -> {
                         handleSortOptionSelected("creationDate") // Запустити обробник сортування за полем "creationDate"
                     }
-                    R.id.completeDate -> {
+                    R.id.execution_date -> {
                         handleSortOptionSelected("completeDate") // Запустити обробник сортування за полем "executionDate"
                     }
                 }
@@ -167,30 +167,28 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
         binding.recyclerView.adapter = noteAdapter
         noteAdapter.startListening()
     }
-    //////////////////////////////////////////
-    // Оголошення функції, яка викликається при натисканні кнопки сортування
+
     private fun handleSortOptionSelected(sortOption: String) {
         currentSortOption = sortOption
-        reloadRecyclerViewData() // Перезавантаження даних RecyclerView з новим сортуванням
+        reloadRecyclerViewData()
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun reloadRecyclerViewData() {
-        noteAdapter.stopListening() // Зупинити прослуховування змін даних перед оновленням
-        // Оновити запит до Firestore з новим сортуванням
+        noteAdapter.stopListening()
+
         val query = firestore.collection("Notes").document(user.uid).collection("UserNotes")
             .orderBy(currentSortOption, Query.Direction.ASCENDING)
 
         val userNotes = FirestoreRecyclerOptions.Builder<FirebaseModel>()
             .setQuery(query, FirebaseModel::class.java).build()
 
-        noteAdapter.updateOptions(userNotes) // Оновити опції адаптера з новим запитом
+        noteAdapter.updateOptions(userNotes)
 
-        // Викликайте цю функцію, якщо потрібно оновити дані у RecyclerView
         binding.recyclerView.adapter?.notifyDataSetChanged()
-        noteAdapter.startListening() // Зупинити прослуховування змін даних перед оновленням
+        noteAdapter.startListening()
     }
-    ////////////////////////////////////////////////
+
     override fun onStart() {
         super.onStart()
         noteAdapter.startListening()
