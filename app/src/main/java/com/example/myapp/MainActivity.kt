@@ -5,12 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.FragmentManager
 import com.example.myapp.databinding.ActivityMainBinding
 import com.example.myapp.ui.main.NotesFragment
 import com.example.myapp.ui.login.SignInFragment
 import com.example.myapp.ui.main.ExploreFragment
+import com.example.myapp.ui.main.SplashActivity
 import com.example.myapp.ui.settings.SettingsFragment
-import com.example.myapp.utils.ThemeUtils
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -26,8 +27,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
-
-        applyCurrentTheme()
 
         if (savedInstanceState == null) {
             val settingsFragment = SettingsFragment()
@@ -79,24 +78,15 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount == 0) {
             val alertDialog = AlertDialog.Builder(this)
-                .setMessage("Ви впевнені, що хочете вийти з додатку?")
-                .setPositiveButton("Так") { _, _ ->
+                .setMessage(R.string.sure_want_quit)
+                .setPositiveButton(R.string.yes) { _, _ ->
                     finish()
                 }
-                .setNegativeButton("Ні", null)
+                .setNegativeButton(R.string.no, null)
                 .create()
             alertDialog.show()
         } else {
             super.onBackPressed()
-        }
-    }
-
-    private fun applyCurrentTheme() {
-        val currentThemeMode = ThemeUtils.getCurrentThemeMode(this)
-        if (currentThemeMode == ThemeUtils.THEME_DARK) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
     }
 }

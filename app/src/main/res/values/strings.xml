@@ -2,11 +2,31 @@
     <string name="app_name">MyApp</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+
     <string name="don_t_have_one">Don\'t have one?</string>
     <string name="let_s_create">Let`s create!</string>
     <string name="welcome_to_notes">Welcome to Notes!</string>
     <string name="log_in_to_an_existing_account">Log in to an existing account!</string>
     <string name="let_s_create_an_account">Let`s create an account!</string>
+
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="sure_want_logout">Are you sure you want to log out?</string>
+    <string name="sure_want_delete">Are you sure you want to delete note?</string>
+    <string name="sure_want_quit">Are you sure you want to exit the app?</string>
+
+    <string name="all_fields_should_be_filled">All fields should be filled</string>
+    <string name="note_created">Note created successfully</string>
+    <string name="failed_to_create">Failed to create note</string>
+    <string name="note_updated">Note is updated successfully</string>
+    <string name="failed_to_update">Failed to update note</string>
+    <string name="deleted_note">Note has been deleted</string>
+    <string name="cannot_deleted_note">Can not delete the note</string>
+    <string name="edit_note">Edit note</string>
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <color name="background_stroke_color_of_ed_in_fragment">#FFFFFFFF</color>

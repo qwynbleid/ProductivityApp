@@ -40,7 +40,6 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
         user = FirebaseAuth.getInstance().currentUser!!
         firestore = FirebaseFirestore.getInstance()
 
-        //picker для дати виконання завдання
         val datePicker = MaterialDatePicker.Builder.datePicker()
             .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
             .build()
@@ -64,10 +63,10 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
             if (editMode) {
                 noteTitle.setText(note.title)
                 noteText.setText(note.text)
-                completeDate.text = note.completeDate?.let { Utility.timestampToString(it) }
+                completeDate.text = note.completeDate.let { Utility.timestampToString(it) }
                 completeDate.visibility = View.VISIBLE
                 deleteBt.visibility = View.VISIBLE
-                topTextView.text = "Edit note"
+                topTextView.text = getString(R.string.edit_note)
 
                 when(note.priority) {
                     1 -> {priorityGroup.check(highPriority.id)}
@@ -79,17 +78,15 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
             deleteBt.setOnClickListener {
 
                 val alertDialog = AlertDialog.Builder(requireContext())
-                    .setMessage("Ви впевнені, що хочете видалити нотатку?")
-                    .setPositiveButton("Так") { _, _ ->
+                    .setMessage(R.string.sure_want_delete)
+                    .setPositiveButton(R.string.yes) { _, _ ->
                         noteProgressBar.visibility = View.VISIBLE
-
-                        //noteText.setTextColor(R.id)
 
                         docRef = firestore.collection("Notes").document(user.uid).collection("UserNotes").document(note.noteId)
 
                         docRef.delete().addOnSuccessListener {
 
-                            Toast.makeText(requireContext(), "Note ${note.title} deleted", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), R.string.deleted_note, Toast.LENGTH_SHORT).show()
 
                             requireActivity().supportFragmentManager
                                 .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
@@ -97,7 +94,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
                         }.addOnFailureListener {
 
-                            Toast.makeText(requireContext(), "Can not delete the note", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), R.string.cannot_deleted_note, Toast.LENGTH_SHORT).show()
 
                             requireActivity().supportFragmentManager
                                 .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
@@ -105,7 +102,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                         }
                     }
 
-                    .setNegativeButton("Ні", null)
+                    .setNegativeButton(R.string.no, null)
                     .create()
                 alertDialog.show()
 
@@ -132,7 +129,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
 
                     if (title.isEmpty() || text.isEmpty() || completeDate.text == "noDate") {
-                        Toast.makeText(requireContext(),"All fields should be filled", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(),R.string.all_fields_should_be_filled, Toast.LENGTH_SHORT).show()
                     } else {
 
                         noteProgressBar.visibility = View.VISIBLE
@@ -148,14 +145,14 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                         noteMap["priority"] = priority
 
                         docRef.set(noteMap).addOnCompleteListener {
-                            Toast.makeText(requireContext(),"Note is updated", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(),R.string.note_updated, Toast.LENGTH_SHORT).show()
 
                             requireActivity().supportFragmentManager
                                 .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
 
                         }.addOnFailureListener {
-                            Toast.makeText(requireContext(),"Failed to update note", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(),R.string.failed_to_update, Toast.LENGTH_SHORT).show()
 
                             requireActivity().supportFragmentManager
                                 .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
@@ -170,7 +167,7 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                     val text = noteText.text.toString()
 
                     if (title.isEmpty() || text.isEmpty() || completeDate.text == "noDate") {
-                        Toast.makeText(requireContext(),"All fields should be filled", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(),R.string.all_fields_should_be_filled, Toast.LENGTH_SHORT).show()
                     } else {
 
                         noteProgressBar.visibility = View.VISIBLE
@@ -185,14 +182,14 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                         noteMap["priority"] = priority
 
                         docRef.set(noteMap).addOnCompleteListener {
-                            Toast.makeText(requireContext(),"Note created successfully", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(),R.string.note_created, Toast.LENGTH_SHORT).show()
 
                             requireActivity().supportFragmentManager
                                 .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)
 
 
                         }.addOnFailureListener {
-                            Toast.makeText(requireContext(),"Failed to create note", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(),R.string.failed_to_create, Toast.LENGTH_SHORT).show()
 
                             requireActivity().supportFragmentManager
                                 .popBackStack("NotesFragment", FragmentManager.POP_BACK_STACK_INCLUSIVE)

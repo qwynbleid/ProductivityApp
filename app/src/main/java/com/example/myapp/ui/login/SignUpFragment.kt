@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.myapp.R
 import com.example.myapp.databinding.FragmentSignUpBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 
 class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
 
@@ -19,43 +20,47 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        activity?.setTheme(android.R.style.Theme_Black_NoTitleBar_Fullscreen)
-
         auth = FirebaseAuth.getInstance()
         binding = FragmentSignUpBinding.bind(view)
 
         binding.apply {
 
-            cancelBt.setOnClickListener {
+            returnToSignIn.setOnClickListener {
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainer, signInFragment)
                     .commit()
             }
 
             submitBt.setOnClickListener {
-                val email = userEmail.text.toString().trim()
-                val password = userPassword.text.toString().trim()
+                val email = userEmail.editText?.text.toString()
+                val password = userPassword.editText?.text.toString()
 
-                if (userEmail.text.isEmpty() || userPassword.text.isEmpty()) {
-                    Toast.makeText(requireContext(),"All fields should be filled", Toast.LENGTH_SHORT).show()
+                if (email.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(requireContext(),R.string.all_fields_should_be_filled, Toast.LENGTH_SHORT).show()
                 } else if (password.length < 8) {
                     Toast.makeText(requireContext(),"Password is too short", Toast.LENGTH_SHORT).show()
                 } else {
 
-                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            Toast.makeText(requireContext(),"Registration Successful", Toast.LENGTH_SHORT).show()
+                    auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                        try {
+                            if (task.isSuccessful) {
+                                Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT).show()
 
-                            sendEmailVerification()
+                                sendEmailVerification()
 
-                            requireActivity().supportFragmentManager.beginTransaction()
-                                .replace(R.id.fragmentContainer, signInFragment)
-                                .commit()
+                                requireActivity().supportFragmentManager.beginTransaction()
+                                    .replace(R.id.fragmentContainer, signInFragment)
+                                    .commit()
 
-                            auth.signOut()
+                                auth.signOut()
 
-                        } else {
-                            Toast.makeText(requireContext(),"Failed to register", Toast.LENGTH_SHORT).show()
+                            } else {
+                                throw task.exception!!
+                            }
+                        } catch (e: FirebaseAuthUserCollisionException) {
+                            Toast.makeText(requireContext(), "Email address is already in use", Toast.LENGTH_SHORT).show()
+                        } catch (e: Exception) {
+                            Toast.makeText(requireContext(), "Failed to register", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }

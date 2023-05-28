@@ -1,13 +1,12 @@
-package com.example.myapp.ui.main
+package com.example.myapp.ui.main.firebase
 
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapp.R
 import com.example.myapp.databinding.NoteItemBinding
+import com.example.myapp.ui.main.firebase.FirebaseModel
 import com.example.myapp.utils.Utility
-import java.text.SimpleDateFormat
-import java.util.*
 
 class NoteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = NoteItemBinding.bind(view)

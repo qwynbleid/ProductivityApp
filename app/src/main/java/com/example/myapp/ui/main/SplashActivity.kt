@@ -1,10 +1,13 @@
 package com.example.myapp.ui.main
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.FragmentManager
 import com.example.myapp.MainActivity
 import com.example.myapp.databinding.ActivitySplashBinding
 
@@ -25,4 +28,5 @@ class SplashActivity : AppCompatActivity() {
             finish()
         }, splashDuration)
     }
+
 }

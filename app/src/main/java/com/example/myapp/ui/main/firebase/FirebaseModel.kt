@@ -1,4 +1,4 @@
-package com.example.myapp.ui.main
+package com.example.myapp.ui.main.firebase
 
 import com.google.firebase.Timestamp
 import java.util.*

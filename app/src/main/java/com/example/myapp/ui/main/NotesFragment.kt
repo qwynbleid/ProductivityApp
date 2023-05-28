@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.myapp.MainActivity
 import com.example.myapp.R
 import com.example.myapp.databinding.FragmentNotesBinding
+import com.example.myapp.ui.main.firebase.FirebaseModel
+import com.example.myapp.ui.main.firebase.NoteViewHolder
 import com.example.myapp.ui.settings.SettingsFragment
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -192,6 +195,12 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
     override fun onStart() {
         super.onStart()
         noteAdapter.startListening()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val fragmentManager = requireActivity().supportFragmentManager
+        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 
     override fun onCreateView(

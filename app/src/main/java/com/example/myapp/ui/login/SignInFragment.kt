@@ -11,6 +11,7 @@ import com.example.myapp.R
 import com.example.myapp.databinding.FragmentSignInBinding
 import com.example.myapp.ui.main.NotesFragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 
 class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
@@ -38,17 +39,22 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
             submitBt.setOnClickListener {
 
-                val email = userEmail.text.toString().trim()
-                val password = userPassword.text.toString().trim()
+                val email = userEmail.editText?.text.toString()
+                val password = userPassword.editText?.text.toString()
 
                 if (email.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(requireContext(),"All fields should be filled", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),R.string.all_fields_should_be_filled, Toast.LENGTH_SHORT).show()
                 }  else {
-                    auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-                        if (it.isSuccessful) {
+                    auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
                             checkEmailVerification()
                         } else {
-                            Toast.makeText(requireContext(),"Account does not exist", Toast.LENGTH_SHORT).show()
+                            val exception = task.exception
+                            if (exception is FirebaseAuthInvalidCredentialsException) {
+                                Toast.makeText(requireContext(), "Invalid password", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(requireContext(), "Failed to sign in", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
                 }
