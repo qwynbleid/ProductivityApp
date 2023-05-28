@@ -1,9 +1,31 @@
-<resources>
+<!--<resources>-->
 
-<!--    <style name="Widget.Theme.MyApp.ButtonBar.Fullscreen" parent="">-->
-<!--        <item name="android:background">@color/black_overlay</item>-->
-<!--        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>-->
+<!--&lt;!&ndash;    <style name="Widget.Theme.MyApp.ButtonBar.Fullscreen" parent="">&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="android:background">@color/black_overlay</item>&ndash;&gt;-->
+<!--&lt;!&ndash;        <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>&ndash;&gt;-->
+<!--&lt;!&ndash;    </style>&ndash;&gt;-->
+<!--    <style name="ButtonTheme.SoftGrey" parent="Theme.AppCompat">-->
+<!--        <item name="android:backgroundTint">#0B3948</item>-->
 <!--    </style>-->
+<!--</resources>-->
+
+<resources>
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
+        <!-- Добавьте нужные атрибуты стиля для светлой темы -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+        <!-- ...другие атрибуты стиля... -->
+    </style>
+
+    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+        <!-- Добавьте нужные атрибуты стиля для темной темы -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+        <!-- ...другие атрибуты стиля... -->
+    </style>
+
     <style name="ButtonTheme.SoftGrey" parent="Theme.AppCompat">
         <item name="android:backgroundTint">#0B3948</item>
     </style>

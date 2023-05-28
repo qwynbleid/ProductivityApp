@@ -4,10 +4,13 @@ import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.myapp.databinding.ActivityMainBinding
 import com.example.myapp.ui.main.NotesFragment
 import com.example.myapp.ui.login.SignInFragment
 import com.example.myapp.ui.main.ExploreFragment
+import com.example.myapp.ui.settings.SettingsFragment
+import com.example.myapp.utils.ThemeUtils
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -19,31 +22,27 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
 
-
         binding = ActivityMainBinding.inflate(layoutInflater)
-
-        binding.bottomMenu.setOnItemSelectedListener {
-
-                when(it.itemId) {
-                    R.id.notes_item -> {
-                        showNotesFragment()
-                    }
-                    R.id.explore_item -> {
-                        showExploreFragment()
-                    }
-                }
-                true
-            }
-
-
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
 
-//        val splashFragment = SplashFragment()
-//        supportFragmentManager.beginTransaction()
-//            .replace(R.id.fragmentContainer, splashFragment)
-//            .commit()
+        applyCurrentTheme()
+
+        if (savedInstanceState == null) {
+            val settingsFragment = SettingsFragment()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, settingsFragment)
+                .commit()
+        }
+
+        binding.bottomMenu.setOnItemSelectedListener {
+            when(it.itemId) {
+                R.id.notes_item -> showNotesFragment()
+                R.id.explore_item -> showExploreFragment()
+            }
+            true
+        }
 
         if (auth.currentUser == null) {
             showLoginFragment()
@@ -53,14 +52,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun showMenu(showMenu: Boolean) {
-        if (showMenu) {
-            binding.bottomMenu.visibility = View.VISIBLE
-        } else {
-            binding.bottomMenu.visibility = View.GONE
-        }
+        binding.bottomMenu.visibility = if (showMenu) View.VISIBLE else View.GONE
     }
-
-
 
     private fun showExploreFragment() {
         val exploreFragment = ExploreFragment()
@@ -97,4 +90,14 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
+
+    private fun applyCurrentTheme() {
+        val currentThemeMode = ThemeUtils.getCurrentThemeMode(this)
+        if (currentThemeMode == ThemeUtils.THEME_DARK) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
+    }
 }
+
