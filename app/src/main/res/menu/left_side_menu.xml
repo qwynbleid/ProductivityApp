@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <item android:title="Search by time">
+    <item android:title="Day of execution:">
         <menu>
-            <item android:title="Day"
+            <item android:title="Today"
                 android:id="@+id/dayBt"/>
 
-            <item android:title="Week"
+            <item android:title="This Week"
                 android:id="@+id/weekBt"/>
 
-            <item android:title="Month"
+            <item android:title="This Month"
                 android:id="@+id/monthBt"/>
 
-            <item android:title="Year"
+            <item android:title="This Year"
                 android:id="@+id/yearBt"/>
 
         </menu>
