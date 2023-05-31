@@ -155,6 +155,7 @@
         android:layout_marginEnd="64dp"
         android:text="noDate"
         android:textColor="@color/text_color"
+        android:fontFamily="@font/poppins_light"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
