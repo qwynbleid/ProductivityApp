@@ -31,6 +31,8 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
     private lateinit var noteAdapter: FirestoreRecyclerAdapter<FirebaseModel, NoteViewHolder>
     private var currentSortOption: String = "creationDate" // Початкова опція сортування (creationDate)
     private var currentUserNotes:  FirestoreRecyclerOptions<FirebaseModel>? = null/////////////
+    private var startDate: Date? = null
+    private var endDate: Date? = null
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -109,6 +111,9 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
                         calendar.add(Calendar.DAY_OF_MONTH, 1)
                         val endOfDay = calendar.time
 
+                        startDate = startOfDay
+                        endDate = endOfDay
+
                         updateQuery(startOfDay, endOfDay)
                     }
                     R.id.weekBt -> {
@@ -123,6 +128,9 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
 
                         calendar.add(Calendar.WEEK_OF_YEAR, 1)
                         val endOfWeek = calendar.time
+
+                        startDate = startOfWeek
+                        endDate = endOfWeek
 
                         updateQuery(startOfWeek, endOfWeek)
 
@@ -139,6 +147,9 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
                         calendar.add(Calendar.MONTH, 1)
                         val endOfMonth = calendar.time
 
+                        startDate = startOfMonth
+                        endDate = endOfMonth
+
                         updateQuery(startOfMonth, endOfMonth)
 
                     }
@@ -154,8 +165,25 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
                         calendar.add(Calendar.YEAR, 1)
                         val endOfYear = calendar.time
 
+                        startDate = startOfYear
+                        endDate = endOfYear
+
                         updateQuery(startOfYear, endOfYear)
 
+                    }
+                    R.id.allBt -> {
+                        val query = firestore.collection("Notes").document(user.uid).collection("UserNotes")
+                            .orderBy(currentSortOption, Query.Direction.ASCENDING)
+
+                        val userNotes = FirestoreRecyclerOptions.Builder<FirebaseModel>()
+                            .setQuery(query, FirebaseModel::class.java)
+                            .build()
+
+                        currentUserNotes = userNotes
+                        startDate = null
+                        endDate = null
+                        noteAdapter.updateOptions(userNotes)
+                        binding.recyclerView.adapter?.notifyDataSetChanged()
                     }
                     R.id.settingsBt -> {
 
@@ -179,47 +207,51 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
             .setQuery(query, FirebaseModel::class.java)
             .build()
 
-        if (currentUserNotes  == null) {
+        //qetQuery(startDate, endDate)
+
+        if (currentUserNotes  == null || (startDate == null && endDate == null)) {
             currentUserNotes = userNotes
-        }
 
-        noteAdapter =
-            object : FirestoreRecyclerAdapter<FirebaseModel, NoteViewHolder>(currentUserNotes!!) {
-                override fun onCreateViewHolder(
-                    parent: ViewGroup,
-                    viewType: Int
-                ): NoteViewHolder {
-                    val itemView = LayoutInflater.from(parent.context)
-                        .inflate(R.layout.note_item, parent, false)
-                    return NoteViewHolder(itemView)
-                }
+            noteAdapter =
+                object : FirestoreRecyclerAdapter<FirebaseModel, NoteViewHolder>(currentUserNotes!!) {
+                    override fun onCreateViewHolder(
+                        parent: ViewGroup,
+                        viewType: Int
+                    ): NoteViewHolder {
+                        val itemView = LayoutInflater.from(parent.context)
+                            .inflate(R.layout.note_item, parent, false)
+                        return NoteViewHolder(itemView)
+                    }
 
-                override fun onBindViewHolder(
-                    holder: NoteViewHolder,
-                    position: Int,
-                    model: FirebaseModel
-                ) {
+                    override fun onBindViewHolder(
+                        holder: NoteViewHolder,
+                        position: Int,
+                        model: FirebaseModel
+                    ) {
 
-                    val noteId = noteAdapter.snapshots.getSnapshot(position).id
+                        val noteId = noteAdapter.snapshots.getSnapshot(position).id
 
-                    holder.bind(model)
+                        holder.bind(model)
 
-                    holder.itemView.setOnClickListener {
+                        holder.itemView.setOnClickListener {
 
-                        val note = Note(model.title, model.text, model.creationDate, model.completeDate, model.priority, noteId)
+                            val note = Note(model.title, model.text, model.creationDate, model.completeDate, model.priority, noteId)
 
-                        val addNoteFragment = AddNoteFragment(true, note)
+                            val addNoteFragment = AddNoteFragment(true, note)
 
-                        requireActivity().supportFragmentManager.beginTransaction()
-                            .replace(R.id.fragmentContainer, addNoteFragment)
-                            .addToBackStack("NotesFragment")
-                            .commit()
+                            requireActivity().supportFragmentManager.beginTransaction()
+                                .replace(R.id.fragmentContainer, addNoteFragment)
+                                .addToBackStack("NotesFragment")
+                                .commit()
+
+                        }
 
                     }
 
                 }
-
-            }
+        } else {
+            updateQuery(startDate!!, endDate!!)
+        }
 
         binding.recyclerView.layoutManager = GridLayoutManager(context, 1)
         binding.recyclerView.adapter = noteAdapter

@@ -16,6 +16,9 @@
             <item android:title="This Year"
                 android:id="@+id/yearBt"/>
 
+            <item android:title="All"
+                android:id="@+id/allBt"/>
+
         </menu>
     </item>
     <item android:title="Other">
