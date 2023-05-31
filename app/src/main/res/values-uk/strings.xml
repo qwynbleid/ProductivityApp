@@ -1,0 +1,92 @@
+<resources>
+    <string name="app_name">Нотатки</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="don_t_have_one">Ще не створили?</string>
+    <string name="let_s_create">Гайда створимо!</string>
+    <string name="welcome_to_notes">Вітаємо у Нотатках!</string>
+    <string name="log_in_to_an_existing_account">Увійти в існуючий акаунт</string>
+    <string name="let_s_create_an_account">Гайда створимо акаунт!</string>
+
+    <string name="yes">Так</string>
+    <string name="no">Ні</string>
+
+    <string name="sure_want_logout">Впевнені, що хочете вийти з акаунту?</string>
+    <string name="sure_want_delete">Впевнені, що хочете видалити нотатку?</string>
+    <string name="sure_want_quit">Впевнені, що хочете вийти з додатку?</string>
+
+    <string name="all_fields_should_be_filled">Всі поля мають бути заповнені</string>
+    <string name="note_created">Нотатка створена успішно</string>
+    <string name="failed_to_create">Не вдалося створити нотатку</string>
+    <string name="note_updated">Нотатка оновлена успішно</string>
+    <string name="failed_to_update">Не вдалося оновити нотатку</string>
+    <string name="deleted_note">Нотатка видалена</string>
+    <string name="cannot_deleted_note">Не вдалося видалити нотатку</string>
+    <string name="edit_note">Змінити нотатку</string>
+
+    <string name="invalid_password">Не правильний пароль</string>
+    <string name="failed_to_sign_in">Помилка входу в акаунт</string>
+
+    <string name="logged_in">Вхід успішний!</string>
+    <string name="verify_your_email_first">Спочатку верифікуйте Вашу електронну адресу</string>
+
+    <string name="password_is_too_short">Пароль занадто короткий</string>
+    <string name="registration_successful">Реєстрація успішна!</string>
+
+    <string name="email_address_is_already_in_use">Ця електронна адреса вже використовується</string>
+    <string name="failed_to_register">Не вдалося зареєструватися</string>
+
+    <string name="verification_email_is_sent_verify_it_and_log_in_again">Верифікаційний лист надіслано, верифікуйте Вашу адресу та повторіть спробу</string>
+    <string name="failed_to_send_verification_email">Не вдалося верифікувати Вашу електронну адресу</string>
+
+
+
+
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_new_task">Додати нову нотатку</string>
+    <string name="title">Назва</string>
+    <string name="write_note">Запишіть нотатку</string>
+    <string name="complete_to">Виконати до:</string>
+    <string name="choose_date">Оберіть дату</string>
+    <string name="low">Низький</string>
+    <string name="medium">Середній</string>
+    <string name="high">Високий</string>
+    <string name="save">Зберегти</string>
+    <string name="coming_soon">Скоро буде!</string>
+    <string name="settings">Налаштунки</string>
+    <string name="night_mode">Нічний режим</string>
+    <string name="logout">Вийти</string>
+    <string name="email">Електронна адреса</string>
+    <string name="password">Пароль</string>
+    <string name="submit">Підтвердити</string>
+    <string name="cancel">Відмінити</string>
+    <string name="notes">Нотатки</string>
+    <string name="explore">Досліджуй</string>
+    <string name="order_by">Сортувати за:</string>
+    <string name="creation_date">Дата створення</string>
+    <string name="complete_date">Дата виконання</string>
+    <string name="priority">Пріоритет</string>
+    <string name="day_of_execution">День виконання:</string>
+    <string name="today">Сьогодні</string>
+    <string name="this_week">Цього тиждня</string>
+    <string name="this_month">Цього місяця</string>
+    <string name="this_year">Цього року</string>
+    <string name="all">Усі</string>
+    <string name="other">Інші</string>
+    <color name="background_stroke_color_of_ed_in_fragment">#FFFFFFFF</color>
+    <color name="background_stroke_color_of_ed_in_fragment_on_state_focused">#E6E6E6</color>
+
+
+
+    <string-array name="priorities">
+        <item>High Priorities</item>
+        <item>Medium Priorities</item>
+        <item>Low Priorities</item>
+    </string-array>
+
+
+</resources>

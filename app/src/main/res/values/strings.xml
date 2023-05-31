@@ -25,10 +25,58 @@
     <string name="cannot_deleted_note">Can not delete the note</string>
     <string name="edit_note">Edit note</string>
 
+    <string name="invalid_password">Invalid password</string>
+    <string name="failed_to_sign_in">Failed to sign in</string>
+
+    <string name="logged_in">Logged in</string>
+    <string name="verify_your_email_first">Verify your email first</string>
+
+    <string name="password_is_too_short">Password is too short</string>
+    <string name="registration_successful">Registration Successful</string>
+
+    <string name="email_address_is_already_in_use">Email address is already in use </string>
+    <string name="failed_to_register">Failed to register </string>
+
+    <string name="verification_email_is_sent_verify_it_and_log_in_again">Verification Email is sent, verify it and log in again</string>
+    <string name="failed_to_send_verification_email">Failed to send verification Email</string>
+
+
+
+
 
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_new_task">Add new task</string>
+    <string name="title">Title</string>
+    <string name="write_note">Write note</string>
+    <string name="complete_to">Complete to:</string>
+    <string name="choose_date">Choose date</string>
+    <string name="low">Low</string>
+    <string name="medium">Medium</string>
+    <string name="high">High</string>
+    <string name="save">Save</string>
+    <string name="coming_soon">Coming soon!</string>
+    <string name="settings">Settings</string>
+    <string name="night_mode">Night mode</string>
+    <string name="logout">Logout</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="notes">Notes</string>
+    <string name="explore">Explore</string>
+    <string name="order_by">Order by:</string>
+    <string name="creation_date">Creation date</string>
+    <string name="complete_date">Complete date</string>
+    <string name="priority">Priority</string>
+    <string name="day_of_execution">Day of execution:</string>
+    <string name="today">Today</string>
+    <string name="this_week">This Week</string>
+    <string name="this_month">This Month</string>
+    <string name="this_year">This Year</string>
+    <string name="all">All</string>
+    <string name="other">Other</string>
     <color name="background_stroke_color_of_ed_in_fragment">#FFFFFFFF</color>
     <color name="background_stroke_color_of_ed_in_fragment_on_state_focused">#E6E6E6</color>
 

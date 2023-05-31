@@ -109,6 +109,8 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
 
             }
 
+
+
             var priority: Int = note.priority
             priorityGroup.setOnCheckedChangeListener { _, checkedId ->
                 priority = when (checkedId) {
@@ -118,6 +120,8 @@ class AddNoteFragment(val editMode: Boolean = false, val note: Note = Note("",""
                     else -> 3
                 }
             }
+
+
 
             saveBt.setOnClickListener {
 

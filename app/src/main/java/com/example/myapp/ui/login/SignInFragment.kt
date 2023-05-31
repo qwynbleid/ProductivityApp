@@ -51,9 +51,9 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                         } else {
                             val exception = task.exception
                             if (exception is FirebaseAuthInvalidCredentialsException) {
-                                Toast.makeText(requireContext(), "Invalid password", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(), R.string.invalid_password, Toast.LENGTH_SHORT).show()
                             } else {
-                                Toast.makeText(requireContext(), "Failed to sign in", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(), R.string.failed_to_sign_in, Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
@@ -67,13 +67,13 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
 
         if (fbUser != null) {
             if (fbUser.isEmailVerified) {
-                Toast.makeText(requireContext(),"Logged in", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(),R.string.logged_in, Toast.LENGTH_SHORT).show()
                 val notesFragment = NotesFragment()
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.fragmentContainer, notesFragment)
                     .commit()
             } else {
-                Toast.makeText(requireContext(), "Verify your email first", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), R.string.verify_your_email_first, Toast.LENGTH_SHORT)
                     .show()
                 auth.signOut()
             }

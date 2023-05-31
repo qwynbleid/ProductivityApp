@@ -45,8 +45,8 @@ dependencies {
 
 
     implementation 'com.google.firebase:firebase-auth:22.0.0'
-    implementation 'com.google.firebase:firebase-firestore:24.6.0'
-    implementation 'com.google.firebase:firebase-firestore-ktx:24.6.0'
+    implementation 'com.google.firebase:firebase-firestore:24.6.1'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.6.1'
 
     implementation 'com.firebaseui:firebase-ui-firestore:8.0.2'
 

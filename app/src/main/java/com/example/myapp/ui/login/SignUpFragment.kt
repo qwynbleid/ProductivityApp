@@ -38,13 +38,13 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                 if (email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(requireContext(),R.string.all_fields_should_be_filled, Toast.LENGTH_SHORT).show()
                 } else if (password.length < 8) {
-                    Toast.makeText(requireContext(),"Password is too short", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(),R.string.password_is_too_short, Toast.LENGTH_SHORT).show()
                 } else {
 
                     auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                         try {
                             if (task.isSuccessful) {
-                                Toast.makeText(requireContext(), "Registration Successful", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(), R.string.registration_successful, Toast.LENGTH_SHORT).show()
 
                                 sendEmailVerification()
 
@@ -58,9 +58,9 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                                 throw task.exception!!
                             }
                         } catch (e: FirebaseAuthUserCollisionException) {
-                            Toast.makeText(requireContext(), "Email address is already in use", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), R.string.email_address_is_already_in_use, Toast.LENGTH_SHORT).show()
                         } catch (e: Exception) {
-                            Toast.makeText(requireContext(), "Failed to register", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), R.string.failed_to_register, Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -76,7 +76,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
             firebaseUser.sendEmailVerification().addOnCompleteListener {
                 Toast.makeText(
                     context,
-                    "Verification Email is sent, verify it and log in again",
+                    R.string.verification_email_is_sent_verify_it_and_log_in_again,
                     Toast.LENGTH_SHORT
                 ).show()
 
@@ -84,7 +84,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         } else {
             Toast.makeText(
                 context,
-                "Failed to send verification Email",
+                R.string.failed_to_send_verification_email,
                 Toast.LENGTH_SHORT
             ).show()
         }

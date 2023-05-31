@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager
 import com.example.myapp.MainActivity
 import com.example.myapp.databinding.ActivitySplashBinding
 
+
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 

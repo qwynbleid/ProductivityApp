@@ -3,12 +3,12 @@
 
     <item android:id="@+id/notes_item"
         android:icon="@drawable/ic_note"
-        android:title="Notes"
+        android:title="@string/notes"
         android:orderInCategory="1"/>
 
     <item android:id="@+id/explore_item"
         android:icon="@drawable/ic_explore"
-        android:title="Explore"
+        android:title="@string/explore"
         android:orderInCategory="2"/>
 
 </menu>

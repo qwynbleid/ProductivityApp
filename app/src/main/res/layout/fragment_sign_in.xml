@@ -37,7 +37,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Submit"
+            android:text="@string/submit"
             app:layout_constraintEnd_toEndOf="@+id/userPassword"
             app:layout_constraintStart_toStartOf="@+id/userPassword"
             app:layout_constraintTop_toBottomOf="@+id/userPassword" />
@@ -112,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textWebEmailAddress"
-                android:hint="Email"
+                android:hint="@string/email"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -133,7 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp" />
         </com.google.android.material.textfield.TextInputLayout>

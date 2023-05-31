@@ -2,28 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <item android:title="Day of execution:">
+    <item android:title="@string/day_of_execution">
         <menu>
-            <item android:title="Today"
+            <item android:title="@string/today"
                 android:id="@+id/dayBt"/>
 
-            <item android:title="This Week"
+            <item android:title="@string/this_week"
                 android:id="@+id/weekBt"/>
 
-            <item android:title="This Month"
+            <item android:title="@string/this_month"
                 android:id="@+id/monthBt"/>
 
-            <item android:title="This Year"
+            <item android:title="@string/this_year"
                 android:id="@+id/yearBt"/>
 
-            <item android:title="All"
+            <item android:title="@string/all"
                 android:id="@+id/allBt"/>
 
         </menu>
     </item>
-    <item android:title="Other">
+    <item android:title="@string/other">
         <menu>
-            <item android:title="Settings"
+            <item android:title="@string/settings"
                 android:id="@+id/settingsBt"/>
         </menu>
     </item>

@@ -3,13 +3,13 @@
     <group android:checkableBehavior="none">
         <item
             android:id="@+id/menu_header"
-            android:title="Order by:"
+            android:title="@string/order_by"
             android:enabled="false" />
     </group>
 
-    <item android:id="@+id/creation_date" android:title="Creation date"></item>
-    <item android:id="@+id/complete_date" android:title="Complete date"></item>
-    <item android:id="@+id/priority" android:title="Priority"></item>
+    <item android:id="@+id/creation_date" android:title="@string/creation_date"></item>
+    <item android:id="@+id/complete_date" android:title="@string/complete_date"></item>
+    <item android:id="@+id/priority" android:title="@string/priority"></item>
 <!--    <item android:id="@+id/difficulty" android:title="Difficulty level"></item>-->
 
 </menu>
