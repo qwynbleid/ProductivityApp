@@ -10,6 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_light"
         android:text="@string/add_new_task"
         android:textColor="@color/text_color"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,6 +37,7 @@
             android:id="@+id/noteTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_light"
             android:hint="@string/title" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,6 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top"
+            android:fontFamily="@font/poppins_light"
             android:hint="@string/write_note"
             android:minLines="2" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -74,7 +77,8 @@
         android:id="@+id/saveBt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="36dp"
+        android:fontFamily="@font/poppins_light"
         android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
@@ -123,7 +127,8 @@
         android:id="@+id/pickDateBt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_light"
         android:text="@string/choose_date"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
@@ -136,6 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="32dp"
+        android:fontFamily="@font/poppins_light"
         android:text="@string/complete_to"
         android:textColor="@color/text_color"
         app:layout_constraintStart_toStartOf="parent"
@@ -169,39 +175,55 @@
         android:id="@+id/priorityGroup"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/saveBt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pickDateBt"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toBottomOf="@+id/priority">
 
         <RadioButton
             android:id="@+id/lowPriority"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/low"
             android:button="@drawable/star"
+            android:checked="true"
+            android:fontFamily="@font/poppins_light"
             android:gravity="center"
-            android:checked="true" />
+            android:text="@string/low" />
 
         <RadioButton
             android:id="@+id/mediumPriority"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/medium"
             android:button="@drawable/star"
-            android:gravity="center" />
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:text="@string/medium" />
 
         <RadioButton
             android:id="@+id/highPriority"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/high"
             android:button="@drawable/star"
-            android:gravity="center" />
+            android:fontFamily="@font/poppins_light"
+            android:gravity="center"
+            android:text="@string/high" />
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/priority"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins_light"
+        android:text="@string/priority"
+        android:textColor="@color/text_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pickDateBt" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

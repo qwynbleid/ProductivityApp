@@ -77,6 +77,8 @@
     <string name="this_year">This Year</string>
     <string name="all">All</string>
     <string name="other">Other</string>
+    <string name="due">Due:</string>
+    <string name="created">Created:</string>
     <color name="background_stroke_color_of_ed_in_fragment">#FFFFFFFF</color>
     <color name="background_stroke_color_of_ed_in_fragment_on_state_focused">#E6E6E6</color>
 

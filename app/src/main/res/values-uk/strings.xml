@@ -77,6 +77,8 @@
     <string name="this_year">Цього року</string>
     <string name="all">Усі</string>
     <string name="other">Інші</string>
+    <string name="due">Виконати до:</string>
+    <string name="created">Створено:</string>
     <color name="background_stroke_color_of_ed_in_fragment">#FFFFFFFF</color>
     <color name="background_stroke_color_of_ed_in_fragment_on_state_focused">#E6E6E6</color>
 

@@ -9,6 +9,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
         android:text="@string/coming_soon"
         android:textColor="@color/text_color"
         android:textSize="22sp"
