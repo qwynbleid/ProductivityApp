@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/poppins_light"
-        android:text="@string/hange_language"
+        android:text="@string/сhange_language"
         android:textAllCaps="false"
         android:textColor="@color/text_color"
         app:layout_constraintBottom_toTopOf="@+id/logoutButton"
