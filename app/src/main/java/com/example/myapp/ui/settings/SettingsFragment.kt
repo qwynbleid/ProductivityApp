@@ -2,6 +2,7 @@ package com.example.myapp.ui.settings
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +17,7 @@ import com.example.myapp.ui.login.SignInFragment
 import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 
-class SettingsFragment: Fragment(R.layout.fragment_settings) {
+class SettingsFragment : Fragment(R.layout.fragment_settings) {
 
     private lateinit var binding: FragmentSettingsBinding
     private lateinit var auth: FirebaseAuth
@@ -35,12 +36,22 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
         val editor = sharedPreferences.edit()
         val nightMode = sharedPreferences.getBoolean("night", false)
 
+        val langSharedPreferences = requireContext().getSharedPreferences("Language", Context.MODE_PRIVATE)
+        val savedLanguage = langSharedPreferences.getString("language", "")
+
+        if (savedLanguage != null && savedLanguage.isNotEmpty()) {
+            setLocale(savedLanguage)
+        }
+
         if (nightMode) {
             binding.themeSwitch.isChecked = true
         }
 
-        binding.apply {
+        binding.languageButton.setOnClickListener {
+            showLanguageSelectionDialog()
+        }
 
+        binding.apply {
             themeSwitch.setOnCheckedChangeListener { _, isChecked ->
                 if (!isChecked) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -77,7 +88,56 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
         }
     }
 
+    private fun setLocale(languageCode: String) {
+        val configuration = resources.configuration
+        val newLocale = Locale(languageCode)
+        configuration.setLocale(newLocale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
+    }
 
+    private fun changeLanguage(languageCode: String) {
+        val sharedPreferences = requireContext().getSharedPreferences("Language", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("language", languageCode)
+        editor.apply()
+
+        setLocale(languageCode)
+
+        val fragmentManager = requireActivity().supportFragmentManager
+        val currentFragment = fragmentManager.findFragmentById(R.id.fragmentContainer)
+        val newFragment = currentFragment?.let { SettingsFragment() }
+        if (newFragment != null) {
+            fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, newFragment)
+                .commit()
+        }
+    }
+
+    private fun showLanguageSelectionDialog() {
+        val languageOptions = arrayOf("English", "Українська")
+        val currentLanguageIndex = if (isLanguageUkrainian()) 1 else 0
+
+        val alertDialog = AlertDialog.Builder(requireContext())
+            .setTitle(R.string.change_language)
+            .setSingleChoiceItems(languageOptions, currentLanguageIndex) { dialog, which ->
+
+                val selectedLanguage = when (which) {
+                    0 -> "en"
+                    1 -> "uk"
+                    else -> "en"
+                }
+                changeLanguage(selectedLanguage)
+                dialog.dismiss()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .create()
+        alertDialog.show()
+    }
+
+    private fun isLanguageUkrainian(): Boolean {
+        val currentLocale = resources.configuration.locale
+        return currentLocale.language == "uk"
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -5,26 +5,32 @@
     <item android:title="@string/day_of_execution">
         <menu>
             <item android:title="@string/today"
-                android:id="@+id/dayBt"/>
+                android:id="@+id/dayBt"
+                android:fontFamily="@font/poppins_light" />
 
             <item android:title="@string/this_week"
-                android:id="@+id/weekBt"/>
+                android:id="@+id/weekBt"
+                android:fontFamily="@font/poppins_light" />
 
             <item android:title="@string/this_month"
-                android:id="@+id/monthBt"/>
+                android:id="@+id/monthBt"
+                android:fontFamily="@font/poppins_light" />
 
             <item android:title="@string/this_year"
-                android:id="@+id/yearBt"/>
+                android:id="@+id/yearBt"
+                android:fontFamily="@font/poppins_light" />
 
             <item android:title="@string/all"
-                android:id="@+id/allBt"/>
+                android:id="@+id/allBt"
+                android:fontFamily="@font/poppins_light" />
 
         </menu>
     </item>
     <item android:title="@string/other">
         <menu>
             <item android:title="@string/settings"
-                android:id="@+id/settingsBt"/>
+                android:id="@+id/settingsBt"
+                android:fontFamily="@font/poppins_light" />
         </menu>
     </item>
 </menu>
