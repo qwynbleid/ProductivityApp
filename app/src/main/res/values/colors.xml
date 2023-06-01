@@ -22,5 +22,9 @@
 
     <color name="button_tint">#416165</color>
     <color name="note_background">#D0CDD7</color>
+<!--    <color name="note_background">#A1FFEB3B</color>-->
+    <color name="background">#C903A0F4</color>
+
+
     <color name="button_background">#0B3948</color>
 </resources>
