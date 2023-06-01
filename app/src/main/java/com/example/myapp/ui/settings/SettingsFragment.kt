@@ -31,7 +31,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         binding = FragmentSettingsBinding.bind(view)
         auth = FirebaseAuth.getInstance()
 
-
         val sharedPreferences = requireContext().getSharedPreferences("Mode", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         val nightMode = sharedPreferences.getBoolean("night", false)

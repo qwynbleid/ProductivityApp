@@ -115,6 +115,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
                         endDate = endOfDay
 
                         updateQuery(startOfDay, endOfDay)
+                        hideFilter(true)
                     }
                     R.id.weekBt -> {
                         val calendar = Calendar.getInstance()
@@ -133,6 +134,8 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
                         endDate = endOfWeek
 
                         updateQuery(startOfWeek, endOfWeek)
+                        hideFilter(true)
+
 
                     }
                     R.id.monthBt -> {
@@ -151,6 +154,8 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
                         endDate = endOfMonth
 
                         updateQuery(startOfMonth, endOfMonth)
+                        hideFilter(true)
+
 
                     }
                     R.id.yearBt -> {
@@ -169,6 +174,8 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
                         endDate = endOfYear
 
                         updateQuery(startOfYear, endOfYear)
+                        hideFilter(true)
+
 
                     }
                     R.id.allBt -> {
@@ -184,6 +191,8 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
                         endDate = null
                         noteAdapter.updateOptions(userNotes)
                         binding.recyclerView.adapter?.notifyDataSetChanged()
+                        hideFilter(false)
+
                     }
                     R.id.settingsBt -> {
 
@@ -251,6 +260,7 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
                 }
         } else {
             updateQuery(startDate!!, endDate!!)
+            hideFilter(true)
         }
 
         binding.recyclerView.layoutManager = GridLayoutManager(context, 1)
@@ -300,6 +310,14 @@ class NotesFragment : Fragment(R.layout.fragment_notes) {
 
         binding.recyclerView.adapter?.notifyDataSetChanged()
         noteAdapter.startListening()
+    }
+
+    private fun hideFilter(hide: Boolean) {
+        if (hide) {
+            binding.filterBt.visibility = View.GONE
+        } else {
+            binding.filterBt.visibility = View.VISIBLE
+        }
     }
 
     override fun onStart() {
