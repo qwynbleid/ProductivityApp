@@ -45,7 +45,7 @@
                         android:id="@+id/title"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
+                        android:layout_marginStart="28dp"
                         android:layout_weight="1"
                         android:background="@color/note_background"
                         android:ellipsize="end"
@@ -62,7 +62,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|top"
                         android:backgroundTint="@color/note_background"
-                        android:src="@drawable/star" />
+                        android:src="@drawable/star"
+                        android:paddingRight="5dp"
+                        android:paddingTop="3dp"/>
 
                 </LinearLayout>
 
@@ -98,7 +100,7 @@
                         android:fontFamily="@font/poppins_light"
                         android:layout_gravity="end"
                         android:background="@color/note_background"
-                        android:textColor="#5A5A5A"
+                        android:textColor="#AEAEAE"
                         android:textSize="12sp"
                         tools:ignore="RtlCompat"/>
 
@@ -114,7 +116,7 @@
                         android:layout_gravity="end"
                         android:fontFamily="@font/poppins_light"
                         android:background="@color/note_background"
-                        android:textColor="#5A5A5A"
+                        android:textColor="#AEAEAE"
                         android:textSize="12sp" />
 
                 </LinearLayout>

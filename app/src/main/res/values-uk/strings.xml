@@ -64,7 +64,7 @@
     <string name="password">Пароль</string>
     <string name="submit">Підтвердити</string>
     <string name="cancel">Відмінити</string>
-    <string name="notes">Нотатки</string>
+    <string name="notes">Завдання</string>
     <string name="explore">Досліджуй</string>
     <string name="order_by">Сортувати за:</string>
     <string name="creation_date">Дата створення</string>

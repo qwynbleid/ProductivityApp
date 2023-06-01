@@ -2,7 +2,7 @@
 <resources>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
+    <color name="purple_700">#AD69FF</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
@@ -14,9 +14,9 @@
     <color name="black_overlay">#66000000</color>
     <color name="text_color">#FFFFFF</color>
     <color name="background_color">#252525</color>
-    <color name="border_color">#272727</color>
+    <color name="border_color">#303030</color>
     <color name="color_grey">#878282</color>
-    <color name="button_tint">#155960</color>
-    <color name="note_background">#8E8D8B</color>
-    <color name="button_background">#242C55</color>
+    <color name="button_tint">#FFBB86FC</color>
+    <color name="note_background">#373737</color>
+    <color name="button_background">#FFBB86FC</color>
 </resources>
