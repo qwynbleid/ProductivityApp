@@ -35,13 +35,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         val editor = sharedPreferences.edit()
         val nightMode = sharedPreferences.getBoolean("night", false)
 
-        val langSharedPreferences = requireContext().getSharedPreferences("Language", Context.MODE_PRIVATE)
-        val savedLanguage = langSharedPreferences.getString("language", "")
-
-        if (savedLanguage != null && savedLanguage.isNotEmpty()) {
-            setLocale(savedLanguage)
-        }
-
         if (nightMode) {
             binding.themeSwitch.isChecked = true
         }
@@ -88,10 +81,18 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun setLocale(languageCode: String) {
-        val configuration = resources.configuration
-        val newLocale = Locale(languageCode)
-        configuration.setLocale(newLocale)
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+
+        val configuration = Configuration(resources.configuration)
+        configuration.setLocale(locale)
+
         resources.updateConfiguration(configuration, resources.displayMetrics)
+
+        requireActivity().apply {
+            baseContext.resources.updateConfiguration(configuration, baseContext.resources.displayMetrics)
+            recreate()
+        }
     }
 
     private fun changeLanguage(languageCode: String) {
