@@ -114,17 +114,17 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun showLanguageSelectionDialog() {
-        val languageOptions = arrayOf("English", "Українська")
-        val currentLanguageIndex = if (isLanguageUkrainian()) 1 else 0
+        val languageOptions = arrayOf("Українська", "English")
+        val currentLanguageIndex = if (isLanguageUkrainian()) 0 else 1
 
         val alertDialog = AlertDialog.Builder(requireContext())
             .setTitle(R.string.change_language)
             .setSingleChoiceItems(languageOptions, currentLanguageIndex) { dialog, which ->
 
                 val selectedLanguage = when (which) {
-                    0 -> "en"
-                    1 -> "uk"
-                    else -> "en"
+                    0 -> "uk"
+                    1 -> "en"
+                    else -> "uk"
                 }
                 changeLanguage(selectedLanguage)
                 dialog.dismiss()
