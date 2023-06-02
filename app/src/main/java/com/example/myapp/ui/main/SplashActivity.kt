@@ -15,7 +15,7 @@ import com.example.myapp.databinding.ActivitySplashBinding
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
-    private val splashDuration = 2000L
+    private val splashDuration = 1000L
     private lateinit var binding : ActivitySplashBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
