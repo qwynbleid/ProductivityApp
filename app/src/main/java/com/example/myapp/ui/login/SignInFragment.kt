@@ -27,7 +27,6 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
         auth = FirebaseAuth.getInstance()
         binding = FragmentSignInBinding.bind(view)
 
-
         binding.apply {
 
             signUpBt.setOnClickListener {
@@ -78,7 +77,6 @@ class SignInFragment : Fragment(R.layout.fragment_sign_in) {
                 auth.signOut()
             }
         }
-
     }
 
     override fun onCreateView(
