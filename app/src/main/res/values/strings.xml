@@ -13,17 +13,17 @@
     <string name="no">No</string>
 
     <string name="sure_want_logout">Are you sure you want to log out?</string>
-    <string name="sure_want_delete">Are you sure you want to delete note?</string>
+    <string name="sure_want_delete">Are you sure you want to delete task?</string>
     <string name="sure_want_quit">Are you sure you want to exit the app?</string>
 
     <string name="all_fields_should_be_filled">All fields should be filled</string>
-    <string name="note_created">Note created successfully</string>
-    <string name="failed_to_create">Failed to create note</string>
-    <string name="note_updated">Note is updated successfully</string>
-    <string name="failed_to_update">Failed to update note</string>
-    <string name="deleted_note">Note has been deleted</string>
-    <string name="cannot_deleted_note">Can not delete the note</string>
-    <string name="edit_note">Edit note</string>
+    <string name="note_created">Task created successfully</string>
+    <string name="failed_to_create">Failed to create task</string>
+    <string name="note_updated">Task is updated successfully</string>
+    <string name="failed_to_update">Failed to update task</string>
+    <string name="deleted_note">Task has been deleted</string>
+    <string name="cannot_deleted_note">Can not delete the task</string>
+    <string name="edit_note">Edit task</string>
 
     <string name="invalid_password">Invalid password</string>
     <string name="failed_to_sign_in">Failed to sign in</string>
@@ -49,7 +49,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_new_task">Add new task</string>
     <string name="title">Title</string>
-    <string name="write_note">Write note</string>
+    <string name="write_note">Write task</string>
     <string name="complete_to">Complete to:</string>
     <string name="choose_date">Choose date</string>
     <string name="low">Low</string>

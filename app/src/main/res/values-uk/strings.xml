@@ -17,13 +17,13 @@
     <string name="sure_want_quit">Впевнені, що хочете вийти з додатку?</string>
 
     <string name="all_fields_should_be_filled">Всі поля мають бути заповнені</string>
-    <string name="note_created">Нотатка створена успішно</string>
-    <string name="failed_to_create">Не вдалося створити нотатку</string>
-    <string name="note_updated">Нотатка оновлена успішно</string>
-    <string name="failed_to_update">Не вдалося оновити нотатку</string>
-    <string name="deleted_note">Нотатка видалена</string>
-    <string name="cannot_deleted_note">Не вдалося видалити нотатку</string>
-    <string name="edit_note">Змінити нотатку</string>
+    <string name="note_created">Завдання створено успішно</string>
+    <string name="failed_to_create">Не вдалося створити завдання</string>
+    <string name="note_updated">Завдання оновлено успішно</string>
+    <string name="failed_to_update">Не вдалося оновити завдання</string>
+    <string name="deleted_note">Завдання видалено</string>
+    <string name="cannot_deleted_note">Не вдалося видалити завдання</string>
+    <string name="edit_note">Змінити завдання</string>
 
     <string name="invalid_password">Не правильний пароль</string>
     <string name="failed_to_sign_in">Помилка входу в акаунт</string>
@@ -47,9 +47,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="add_new_task">Додати нову нотатку</string>
+    <string name="add_new_task">Додати нове завдання</string>
     <string name="title">Назва</string>
-    <string name="write_note">Запишіть нотатку</string>
+    <string name="write_note">Запишіть завданя</string>
     <string name="complete_to">Виконати до:</string>
     <string name="choose_date">Оберіть дату</string>
     <string name="low">Низький</string>
